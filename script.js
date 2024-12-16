@@ -1,9 +1,34 @@
+// array of cards
+const cards=[
+  { id: 'card1', imgSrc: 'https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/5e5948433f44fd4044f9a30b_kids_english_animals_turtle.png?raw=true' },
+  { id: 'card2', imgSrc: 'https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/d5917a615428834d0e00554dad14b846.png?raw=true' },
+  { id: 'card3', imgSrc: 'https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/819-8194770_clip-art-library-download-animal-illustrations-drawing-transparent.png?raw=true' },
+];
+
 // Select the container
 const cardContainer = document.getElementById('card-container');
 
+//Double the cards
+const doubledArray = [...cards, ...cards];
+
+//Shuffle the cards using Fisher-Yates algorithm
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1)); // Random index
+    [array[i], array[j]] = [array[j], array[i]];  // Swap elements
+  }
+  return array;
+}
+
+// Generate the shuffled doubled cards
+const shuffledDoubledArray = shuffleArray(doubledArray);
+
+// Function to create a card
+function createCard(data) {
 // Create the card element
 const card = document.createElement('div');
 card.setAttribute('class', 'card');
+card.setAttribute('id', data.id);
 
 // Create the inner container for flipping
 const inner = document.createElement('div');
@@ -17,59 +42,28 @@ cardFront.setAttribute('class','card-front');
 const cardBack = document.createElement('div');
 cardBack.setAttribute('class','card-back');
 
+// Add the image to the back
+const img = document.createElement('img');
+img.src = data.imgSrc;
+img.alt = "Card Image";
+cardBack.appendChild(img);
+
 // Append everything to the card
-cardContainer.appendChild(card);
 card.appendChild(inner);
 inner.appendChild(cardFront);
 inner.appendChild(cardBack);
-
-// Card Styles
-card.style.width = '200px';
-card.style.height = '150px';
-card.style.perspective = '1000px';// For 3-D animation
-card.style.display = 'flex';
-card.style.borderRadius = '8px';
-card.style.boxShadow = '0 4px 8px';
-card.style.padding = '16px';
-card.style.margin = '16px auto';
-card.style.justifyContent = 'center';
-
-// Inner container styles
-inner.style.display = 'flex';
-inner.style.justifyContent = 'center';
-inner.style.alignItems = 'center';
-inner.style.transformStyle = 'preserve-3d'; // For 3D flipping effect
-inner.style.transition = 'transform 0.6s';
-
-// Front of the card styles
-cardFront.style.position = 'absolute';
-cardFront.style.backfaceVisibility = 'hidden'; // Prevents front from showing on the back side
-cardFront.style.display = 'flex';
-
-// Back of the card styles
-cardBack.style.position = 'absolute';
-cardBack.style.backfaceVisibility = 'hidden'; // Prevents back from showing on the front side
-cardBack.style.display = 'flex';
-cardBack.style.transform = 'rotateY(180deg)'; // Initially rotate the back side
-
-// Set content for the card
-const img = document.createElement('img');
-img.src = "https://cdn.prod.website-files.com/5e4e48af45b75d848013007e/5e5948433f44fd4044f9a30b_kids_english_animals_turtle.png";
-img.alt = "Placeholder Image";
-img.style.width = '200px';
-img.style.height = '200px';
-cardBack.appendChild(img);
 
 // Flipping
 card.addEventListener('click', () => {
   card.classList.toggle('flipped');
 });
 
-// CSS for the flipped effect
-const style = document.createElement('style');
-document.head.appendChild(style);
-style.sheet.insertRule(`
-  .card.flipped .inner {
-    transform: rotateY(180deg);
-  }
-`);
+return card;
+}
+
+// Create and append all shuffled cards to the container
+shuffledDoubledArray.forEach(data => {
+  const card = createCard(data);
+  cardContainer.appendChild(card);
+});
+
