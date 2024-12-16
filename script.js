@@ -32,11 +32,17 @@ card.setAttribute('id', data.id);
 
 // Create the inner container for flipping
 const inner = document.createElement('div');
-inner.setAttribute('class',' inner');
+inner.setAttribute('class','inner');
 
 // Create the card front
 const cardFront = document.createElement('div');
 cardFront.setAttribute('class','card-front');
+
+// Create the front image
+const frontImg = document.createElement('img');
+frontImg.src = 'https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/pngtree-safari-animal-vector-png-image_6882736.png?raw=true';
+frontImg.alt = "Card Front Image";
+cardFront.appendChild(frontImg);
 
 // Create the card back
 const cardBack = document.createElement('div');
@@ -45,7 +51,7 @@ cardBack.setAttribute('class','card-back');
 // Add the image to the back
 const img = document.createElement('img');
 img.src = data.imgSrc;
-img.alt = "Card Image";
+img.alt = "Card Back Image";
 cardBack.appendChild(img);
 
 // Append everything to the card
