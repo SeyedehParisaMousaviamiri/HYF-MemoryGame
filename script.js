@@ -1,8 +1,11 @@
 // array of cards
 const cards=[
-  { id: 'card1', imgSrc: 'https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/5e5948433f44fd4044f9a30b_kids_english_animals_turtle.png?raw=true' },
-  { id: 'card2', imgSrc: 'https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/d5917a615428834d0e00554dad14b846.png?raw=true' },
-  { id: 'card3', imgSrc: 'https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/819-8194770_clip-art-library-download-animal-illustrations-drawing-transparent.png?raw=true' },
+  { id: 'card1', imgSrc: 'https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/5e5948433f44fd4044f9a30b_kids_english_animals_turtle.png?raw=true', alt:'Happy Turtle' },
+  { id: 'card2', imgSrc: 'https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/d5917a615428834d0e00554dad14b846.png?raw=true',alt:'Happy Elephant' },
+  { id: 'card3', imgSrc: 'https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/819-8194770_clip-art-library-download-animal-illustrations-drawing-transparent.png?raw=true', alt:'Happy Raccoon' },
+  { id: 'card4', imgSrc: 'https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/182-1825580_monkey-png-picture-monkey-safari-animals-clipart-transparent.png?raw=true', alt:'Happy Monkey' },
+  { id: 'card5', imgSrc: 'https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/360_F_879506485_qhYJc7sZOrBSvZC3gdNfZF54SvFfSh4v.jpg?raw=true', alt:'Happy Kitty' },
+  { id: 'card6', imgSrc: 'https://raw.githubusercontent.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/refs/heads/main/vector-blue-dolphin-icon-under-600nw-2277946019.webp', alt:'Happy Dolphin' },
 ];
 
 // Select the container

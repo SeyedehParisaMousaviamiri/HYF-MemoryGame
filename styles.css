@@ -1,13 +1,12 @@
 /* Card container styling */
 #card-container {
-    display: grid;
-    grid-template-columns: auto auto auto ;
-    height: auto;
-    width: auto;
-    align-content: center;
-    gap: 10px;
-    margin-top: 20px;
-    padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, auto); /* Creates 3 columns */
+  justify-content: center; /* Centers the items horizontally */
+  align-items: center;
+  max-width: 600px; /* Set a fixed or max width */
+  margin: 20px auto; /* Center the container itself */
+  padding: 10px;
   }
   
   /* Card styling */
