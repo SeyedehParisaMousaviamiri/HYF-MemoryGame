@@ -26,6 +26,36 @@ function shuffleArray(array) {
 // Generate the shuffled doubled cards
 const shuffledDoubledArray = shuffleArray(doubledArray);
 
+//Flip counting
+let flippedCards=[];
+let flipCount=0;
+const flipCounterElement=document.getElementById('flipCounter');
+
+function countFlips() {
+  flipCount++;
+  flipCounterElement.textContent = `Moves: ${flipCount}`;
+}
+
+//Timer
+const timerElement = document.getElementById('timer');
+let startTime = null;
+let timerInterval = null;
+
+// Start the timer
+function startTimer() {
+  if (!startTime) {
+    startTime = Date.now(); // Capture the time when the first card is clicked
+    timerInterval = setInterval(updateTimer, 1000); // Update the timer every second
+  }
+}
+
+// Update the timer
+function updateTimer() {
+  const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+  const minutes = Math.floor(elapsedTime / 60);
+  const seconds = elapsedTime % 60;
+  timerElement.textContent = `Time: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+}
 // Function to create a card
 function createCard(data) {
 // Create the card element
@@ -64,10 +94,38 @@ inner.appendChild(cardBack);
 
 // Flipping
 card.addEventListener('click', () => {
+  if (!card.classList.contains('flipped')) {
   card.classList.toggle('flipped');
+  flippedCards.push(card);
+
+// Start the timer on the first flip
+  if (flippedCards.length === 1) {
+    startTimer();
+  }
+  
+// Update flip count 
+countFlips();
+
+  //Just 2 cards are flipped
+if (flippedCards.length === 2) {
+  setTimeout(() => {
+    flipAllCardsBack();
+   }, 1000);
+  }
+ }
 });
 
+
+
 return card;
+}
+
+//Flip back cards
+function flipAllCardsBack() {
+  flippedCards.forEach(card => {
+    card.classList.remove('flipped');
+  });
+  flippedCards = []; // Clear the flipped cards array
 }
 
 // Create and append all shuffled cards to the container
