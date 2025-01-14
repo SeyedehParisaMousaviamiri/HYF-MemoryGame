@@ -26,7 +26,7 @@ function shuffleArray(array) {
 // Generate the shuffled doubled cards
 const shuffledDoubledArray = shuffleArray(doubledArray);
 
-// Function to create a card
+
 function createCard(data) {
 // Create the card element
 const card = document.createElement('div');
