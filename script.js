@@ -1,6 +1,6 @@
 // Select the container
 const cardContainer = document.getElementById('card-container');
-
+let cards=[];
 //Shuffle the cards using Fisher-Yates algorithm
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -117,9 +117,8 @@ function flipAllCardsBack() {
 fetch("https://raw.githubusercontent.com/SeyedehParisaMousaviamiri/SeyedehParisaMousaviamiri.github.io/refs/heads/main/data.json")
   .then(response => response.json())
   .then(myJson => {
-    const card = { id: 1 };
-    const cards = [card, card]; // slightly simplified version without the spread operator
-     cards[0].id = 2;
+    let cards = myJson; // Store the fetched cards
+    const doubledArray = [...cards, ...cards]; // Double the cards
     const shuffledDoubledArray = shuffleArray(doubledArray); // Shuffle the doubled array
 // Create and append all shuffled cards to the container
 shuffledDoubledArray.forEach(json => {
