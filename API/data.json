@@ -1,0 +1,46 @@
+[
+    {
+      "id": "card1",
+      "type": "Happy Turtle",
+      "image": "https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/5e5948433f44fd4044f9a30b_kids_english_animals_turtle.png?raw=true",
+      "isMatched": false,
+      "isVisible": false
+    },
+    {
+      "id": "card2",
+      "type": "Happy Elephant",
+      "image": "https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/d5917a615428834d0e00554dad14b846.png?raw=true",
+      "isMatched": false,
+      "isVisible": false
+    }
+    ,
+    {
+      "id": "card3",
+      "type": "Happy Raccoon",
+      "image": "https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/819-8194770_clip-art-library-download-animal-illustrations-drawing-transparent.png?raw=true",
+      "isMatched": false,
+      "isVisible": false
+    },
+    {
+      "id": "card4",
+      "type": "Happy Monkey",
+      "image": "https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/182-1825580_monkey-png-picture-monkey-safari-animals-clipart-transparent.png?raw=true",
+      "isMatched": false,
+      "isVisible": false
+    },
+    {
+      "id": "card5",
+      "type": "Happy Kitty",
+      "image": "https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/360_F_879506485_qhYJc7sZOrBSvZC3gdNfZF54SvFfSh4v.jpg?raw=true",
+      "isMatched": false,
+      "isVisible": false
+    },
+    {
+      "id": "card6",
+      "type": "Happy Dolphin",
+      "image": "https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/vector-blue-dolphin-icon-under-600nw-2277946019.webp",
+      "isMatched": false,
+      "isVisible": false
+    }
+    
+  ]

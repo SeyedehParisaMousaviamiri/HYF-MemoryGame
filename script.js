@@ -5,7 +5,7 @@ const cards=[
   { id: 'card3', imgSrc: 'https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/819-8194770_clip-art-library-download-animal-illustrations-drawing-transparent.png?raw=true', alt:'Happy Raccoon' },
   { id: 'card4', imgSrc: 'https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/182-1825580_monkey-png-picture-monkey-safari-animals-clipart-transparent.png?raw=true', alt:'Happy Monkey' },
   { id: 'card5', imgSrc: 'https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/360_F_879506485_qhYJc7sZOrBSvZC3gdNfZF54SvFfSh4v.jpg?raw=true', alt:'Happy Kitty' },
-  { id: 'card6', imgSrc: 'https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/vector-blue-dolphin-icon-under-600nw-2277946019.webp', alt:'Happy Dolphin' },
+  { id: 'card6', imgSrc: 'file:///D:/HYF/HYF-MemoryGame/Img/vector-blue-dolphin-icon-under-600nw-2277946019.webp', alt:'Happy Dolphin' },
 ];
 
 // Select the container
@@ -56,7 +56,8 @@ function updateTimer() {
   const seconds = elapsedTime % 60;
   timerElement.textContent = `Time: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
 }
-// Function to create a card
+
+
 function createCard(data) {
 // Create the card element
 const card = document.createElement('div');
