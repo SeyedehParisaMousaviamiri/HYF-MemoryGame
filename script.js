@@ -1,9 +1,7 @@
 
 // Select the container
 const cardContainer = document.getElementById('card-container');
-
-//Double the cards
-const doubledArray = [...cards, ...cards];
+let cards =[];
 
 //Shuffle the cards using Fisher-Yates algorithm
 function shuffleArray(array) {
@@ -13,9 +11,6 @@ function shuffleArray(array) {
   }
   return array;
 }
-
-// Generate the shuffled doubled cards
-const shuffledDoubledArray = shuffleArray(doubledArray);
 
 //Flip counting
 let flippedCards=[];
@@ -47,15 +42,8 @@ function updateTimer() {
   const seconds = elapsedTime % 60;
   timerElement.textContent = `Time: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
 }
-fetch("https://raw.githubusercontent.com/SeyedehParisaMousaviamiri/SeyedehParisaMousaviamiri.github.io/refs/heads/main/data.json")
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (myJson) {
-    updateList(myJson);
-  });
 
-
+// Create card DOM elements
 function createCard(json) {
 // Create the card element
 const card = document.createElement('div');
@@ -127,9 +115,17 @@ function flipAllCardsBack() {
   flippedCards = []; // Clear the flipped cards array
 }
 
+// Fetch JSON data, create cards, and append them to the container
+fetch("https://raw.githubusercontent.com/SeyedehParisaMousaviamiri/SeyedehParisaMousaviamiri.github.io/refs/heads/main/data.json")
+  .then(response => response.json())
+  .then(myJson => {
+    cards = myJson; // Store the fetched cards
+    const doubledArray = [...cards, ...cards]; // Double the cards
+    const shuffledDoubledArray = shuffleArray(doubledArray); // Shuffle the doubled array
 // Create and append all shuffled cards to the container
 shuffledDoubledArray.forEach(json => {
   const card = createCard(json);
   cardContainer.appendChild(card);
 });
-
+})
+.catch(error => console.error("Error fetching JSON data:", error));
