@@ -56,13 +56,20 @@ function updateTimer() {
   const seconds = elapsedTime % 60;
   timerElement.textContent = `Time: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
 }
+fetch("https://raw.githubusercontent.com/SeyedehParisaMousaviamiri/SeyedehParisaMousaviamiri.github.io/refs/heads/main/data.json")
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (myJson) {
+    updateList(myJson);
+  });
 
 
-function createCard(data) {
+function createCard(json) {
 // Create the card element
 const card = document.createElement('div');
 card.setAttribute('class', 'card');
-card.setAttribute('id', data.id);
+card.setAttribute('id', json.id);
 
 // Create the inner container for flipping
 const inner = document.createElement('div');
@@ -84,7 +91,7 @@ cardBack.setAttribute('class','card-back');
 
 // Add the image to the back
 const img = document.createElement('img');
-img.src = data.imgSrc;
+img.src = json.imgSrc;
 img.alt = "Card Back Image";
 cardBack.appendChild(img);
 
@@ -130,8 +137,8 @@ function flipAllCardsBack() {
 }
 
 // Create and append all shuffled cards to the container
-shuffledDoubledArray.forEach(data => {
-  const card = createCard(data);
+shuffledDoubledArray.forEach(json => {
+  const card = createCard(json);
   cardContainer.appendChild(card);
 });
 
