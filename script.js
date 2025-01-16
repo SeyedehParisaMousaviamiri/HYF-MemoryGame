@@ -117,8 +117,9 @@ function flipAllCardsBack() {
 fetch("https://raw.githubusercontent.com/SeyedehParisaMousaviamiri/SeyedehParisaMousaviamiri.github.io/refs/heads/main/data.json")
   .then(response => response.json())
   .then(myJson => {
-    let cards = myJson; // Store the fetched cards
-    const doubledArray = [...cards, ...cards]; // Double the cards
+    const card = { id: 1 };
+    const cards = [card, card]; // slightly simplified version without the spread operator
+     cards[0].id = 2;
     const shuffledDoubledArray = shuffleArray(doubledArray); // Shuffle the doubled array
 // Create and append all shuffled cards to the container
 shuffledDoubledArray.forEach(json => {
