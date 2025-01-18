@@ -56,7 +56,7 @@ function updateTimer() {
   const seconds = elapsedTime % 60;
   timerElement.textContent = `Time: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
 }
-// Function to create a card
+
 function createCard(data) {
 // Create the card element
 const card = document.createElement('div');
