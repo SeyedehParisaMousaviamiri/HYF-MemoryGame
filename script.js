@@ -57,6 +57,7 @@ function updateTimer() {
   timerElement.textContent = `Time: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
 }
 
+
 function createCard(data) {
 // Create the card element
 const card = document.createElement('div');
