@@ -115,8 +115,6 @@ if (flippedCards.length === 2) {
  }
 });
 
-
-
 return card;
 }
 
