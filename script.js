@@ -80,7 +80,7 @@ inner.appendChild(cardBack);
 
 // Flipping
 card.addEventListener('click', () => {
-  if (!card.classList.contains('flipped')) {
+  if (!card.classList.contains('flipped') && flippedCards.length < 2 && !card.classList.contains('matched')) {
   card.classList.toggle('flipped');
   flippedCards.push(card);
 
@@ -95,23 +95,32 @@ countFlips();
   //Just 2 cards are flipped
 if (flippedCards.length === 2) {
   setTimeout(() => {
-    flipAllCardsBack();
+     // Check for a match
+     checkMatch();
    }, 1000);
   }
  }
 });
 
-
-
 return card;
 }
 
-//Flip back cards
-function flipAllCardsBack() {
-  flippedCards.forEach(card => {
-    card.classList.remove('flipped');
-  });
-  flippedCards = []; // Clear the flipped cards array
+// Check if the flipped cards match
+function checkMatch() {
+  const [card1, card2] = flippedCards;
+
+  // If the cards match, remove them from the DOM
+  if (card1.querySelector('.card-back img').src === card2.querySelector('.card-back img').src) {
+    card1.classList.add('matched');
+    card2.classList.add('matched');
+
+    flippedCards = []; // Clear the flipped cards array
+  } else {
+    // If they don't match, flip them back
+    card1.classList.remove('flipped');
+    card2.classList.remove('flipped');
+    flippedCards = []; // Clear the flipped cards array
+  }
 }
 
 // Fetch JSON data, create cards, and append them to the container
