@@ -49,6 +49,7 @@ if(flipCount > 8 && flipCount <= 12) {
   }
   }
   }
+
 //Timer
 const timerElement = document.getElementById('timer');
 let startTime = null;
@@ -142,13 +143,26 @@ function checkMatch() {
   if (card1.querySelector('.card-back img').src === card2.querySelector('.card-back img').src) {
     card1.classList.add('matched');
     card2.classList.add('matched');
-
+    checkGameOver(); // Check if the game is over
     flippedCards = []; // Clear the flipped cards array
   } else {
     // If they don't match, flip them back
     card1.classList.remove('flipped');
     card2.classList.remove('flipped');
     flippedCards = []; // Clear the flipped cards array
+  }
+}
+
+// Check if the game is finished
+function checkGameOver() {
+  const matchedCards = document.querySelectorAll('.matched');
+  const totalCards = document.querySelectorAll('.card').length;
+
+  if (matchedCards.length === totalCards) {
+    setTimeout(() => {
+      alert("Congratulations! You matched all the cards!");
+      clearInterval(timerInterval); // Stop the timer
+    }, 500); // Delay before showing the game over message
   }
 }
 
