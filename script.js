@@ -20,29 +20,29 @@ function countFlips() {
   flipCounterElement.textContent = `Moves: ${flipCount}`;
 }
 //setting rating based on moves
-if(moves > 8 && moves <= 12) {
+if(flipCount > 8 && flipCount <= 12) {
   for(let i=0; i<5; i++) {
   starElementsArray[i].opacity = 1;
   }
-  } else if(moves > 12 && moves <= 16) {
+  } else if(flipCount > 12 && flipCount <= 16) {
   for(let i=0; i<5; i++) {
   if(i > 3) {
   starElementsArray[i].style.opacity = 0.1;
   }
   }
-  } else if(moves > 16 && moves <= 20) {
+  } else if(flipCount > 16 && flipCount <= 20) {
   for(let i=0; i<5; i++) {
   if(i > 2) {
   starElementsArray[i].style.opacity = 0.1;
   }
   }
-  } else if(moves > 20 && moves <= 24) {
+  } else if(flipCount > 20 && flipCount <= 24) {
   for(let i=0; i<5; i++) {
   if(i > 1) {
   starElementsArray[i].style.opacity = 0.1;
   }
   }
-  } else if(moves > 24){
+  } else if(flipCount > 24){
   for(let i=0; i<5; i++) {
   if(i > 0) {
   starElementsArray[i].style.opacity = 0.1;
