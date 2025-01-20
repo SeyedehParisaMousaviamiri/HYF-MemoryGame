@@ -43,6 +43,7 @@ function updateTimer() {
 
 // Create card DOM elements
 function createCard(json) {
+  console.log('Creating card:', json);
 // Create the card element
 const card = document.createElement('div');
 card.setAttribute('class', 'card');
