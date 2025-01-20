@@ -114,15 +114,24 @@ function flipAllCardsBack() {
 }
 
 // Fetch JSON data, create cards, and append them to the container
-fetch("https://raw.githubusercontent.com/SeyedehParisaMousaviamiri/SeyedehParisaMousaviamiri.github.io/refs/heads/main/data.json")
-  .then(response => response.json())
-  .then(myJson => {
-    let cards = myJson; // Store the fetched cards
+async function fetchData() {
+  try {
+   const response = await fetch("https://raw.githubusercontent.com/SeyedehParisaMousaviamiri/SeyedehParisaMousaviamiri.github.io/refs/heads/main/data.json");
+   const data= await response.json();
+
+    let cards = data; // Store the fetched cards
     const doubledArray = [...cards, ...cards]; // Double the cards
     const shuffledDoubledArray = shuffleArray(doubledArray); // Shuffle the doubled array
+
 // Create and append all shuffled cards to the container
 shuffledDoubledArray.forEach(json => {
   const card = createCard(json);
   cardContainer.appendChild(card);
 });
-})
+ } catch (error) {
+    console.error("Error fetching or processing data:", error);
+  }
+}
+
+// Call the function to start the game
+fetchData();
