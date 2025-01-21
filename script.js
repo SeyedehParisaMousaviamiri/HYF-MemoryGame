@@ -1,6 +1,16 @@
 // Select the container
 const cardContainer = document.getElementById('card-container');
-let cards=[];
+let cards = [];
+let flippedCards = [];
+let flipCount = 0;
+let startTime = null;
+let timerInterval = null;
+
+const flipCounterElement = document.getElementById('flipCounter');
+const timerElement = document.getElementById('timer');
+const starElementsArray = Array.from(document.querySelectorAll('.star'));
+const restartButtons = document.querySelectorAll('.restart');
+
 //Shuffle the cards using Fisher-Yates algorithm
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -10,52 +20,36 @@ function shuffleArray(array) {
   return array;
 }
 
-//Flip counting
-let flippedCards=[];
-let flipCount=0;
-const flipCounterElement=document.getElementById('flipCounter');
+// Update the star rating based on moves
+function updateStarRating() {
+  const totalStars = starElementsArray.length;
+  starElementsArray.forEach((star, index) => {
+    if (flipCount <= 16) {
+      // All stars visible
+      star.style.opacity = 1;
+    } else if (flipCount > 12 && flipCount <= 20) {
+      // 4 stars visible
+      star.style.opacity = index < totalStars - 1 ? 1 : 0.1;
+    } else if (flipCount > 20 && flipCount <= 28) {
+      // 3 stars visible
+      star.style.opacity = index < totalStars - 2 ? 1 : 0.1;
+    } else if (flipCount > 28 && flipCount <= 32) {
+      // 2 stars visible
+      star.style.opacity = index < totalStars - 3 ? 1 : 0.1;
+    } else {
+      // 1 star visible
+      star.style.opacity = index < totalStars - 4 ? 1 : 0.1;
+    }
+  });
+}
 
 function countFlips() {
   flipCount++;
   flipCounterElement.textContent = `Moves: ${flipCount}`;
+  updateStarRating();
 }
-//setting rating based on moves
-if(flipCount > 8 && flipCount <= 12) {
-  for(let i=0; i<5; i++) {
-  starElementsArray[i].opacity = 1;
-  }
-  } else if(flipCount > 12 && flipCount <= 16) {
-  for(let i=0; i<5; i++) {
-  if(i > 3) {
-  starElementsArray[i].style.opacity = 0.1;
-  }
-  }
-  } else if(flipCount > 16 && flipCount <= 20) {
-  for(let i=0; i<5; i++) {
-  if(i > 2) {
-  starElementsArray[i].style.opacity = 0.1;
-  }
-  }
-  } else if(flipCount > 20 && flipCount <= 24) {
-  for(let i=0; i<5; i++) {
-  if(i > 1) {
-  starElementsArray[i].style.opacity = 0.1;
-  }
-  }
-  } else if(flipCount > 24){
-  for(let i=0; i<5; i++) {
-  if(i > 0) {
-  starElementsArray[i].style.opacity = 0.1;
-  }
-  }
-  }
 
 //Timer
-const timerElement = document.getElementById('timer');
-let startTime = null;
-let timerInterval = null;
-
-// Start the timer
 function startTimer() {
   if (!startTime) {
     startTime = Date.now(); // Capture the time when the first card is clicked
@@ -63,7 +57,6 @@ function startTimer() {
   }
 }
 
-// Update the timer
 function updateTimer() {
   const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
   const minutes = Math.floor(elapsedTime / 60);
@@ -71,68 +64,57 @@ function updateTimer() {
   timerElement.textContent = `Time: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
 }
 
+function stopTimer() {
+  if (timerInterval) {
+    clearInterval(timerInterval); // Stops the interval
+    timerInterval = null;         // Resets the interval variable
+    console.log('Timer stopped'); // Debugging output
+  }
+}
+
+
 // Create card DOM elements
 function createCard(json) {
-  console.log('Creating card:', json);
-// Create the card element
-const card = document.createElement('div');
-card.setAttribute('class', 'card');
-card.setAttribute('id', json.id);
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.id = json.id;
 
-// Create the inner container for flipping
-const inner = document.createElement('div');
-inner.setAttribute('class','inner');
+  const inner = document.createElement('div');
+  inner.className = 'inner';
 
-// Create the card front
-const cardFront = document.createElement('div');
-cardFront.setAttribute('class','card-front');
+  const cardFront = document.createElement('div');
+  cardFront.className = 'card-front';
+  const frontImg = document.createElement('img');
+  frontImg.src = 'https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/pngtree-safari-animal-vector-png-image_6882736.png?raw=true';
+  frontImg.alt = 'Card Front';
+  cardFront.appendChild(frontImg);
 
-// Create the front image
-const frontImg = document.createElement('img');
-frontImg.src = 'https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/pngtree-safari-animal-vector-png-image_6882736.png?raw=true';
-frontImg.alt = "Card Front Image";
-cardFront.appendChild(frontImg);
+  const cardBack = document.createElement('div');
+  cardBack.className = 'card-back';
+  const backImg = document.createElement('img');
+  backImg.src = json.imgSrc;
+  backImg.alt = 'Card Back';
+  cardBack.appendChild(backImg);
 
-// Create the card back
-const cardBack = document.createElement('div');
-cardBack.setAttribute('class','card-back');
+  inner.appendChild(cardFront);
+  inner.appendChild(cardBack);
+  card.appendChild(inner);
 
-// Add the image to the back
-const img = document.createElement('img');
-img.src = json.imgSrc;
-img.alt = "Card Back Image";
-cardBack.appendChild(img);
+  card.addEventListener('click', () => {
+    if (!card.classList.contains('flipped') && flippedCards.length < 2 && !card.classList.contains('matched')) {
+      card.classList.add('flipped');
+      flippedCards.push(card);
 
-// Append everything to the card
-card.appendChild(inner);
-inner.appendChild(cardFront);
-inner.appendChild(cardBack);
+      if (flippedCards.length === 1) startTimer();
+      countFlips();
 
-// Flipping
-card.addEventListener('click', () => {
-  if (!card.classList.contains('flipped') && flippedCards.length < 2 && !card.classList.contains('matched')) {
-  card.classList.toggle('flipped');
-  flippedCards.push(card);
+      if (flippedCards.length === 2) {
+        setTimeout(checkMatch, 500);
+      }
+    }
+  });
 
-// Start the timer on the first flip
-  if (flippedCards.length === 1) {
-    startTimer();
-  }
-  
-// Update flip count 
-countFlips();
-
-  //Just 2 cards are flipped
-if (flippedCards.length === 2) {
-  setTimeout(() => {
-     // Check for a match
-     checkMatch();
-   }, 1000);
-  }
- }
-});
-
-return card;
+  return card;
 }
 
 // Check if the flipped cards match
@@ -143,28 +125,31 @@ function checkMatch() {
   if (card1.querySelector('.card-back img').src === card2.querySelector('.card-back img').src) {
     card1.classList.add('matched');
     card2.classList.add('matched');
-    checkGameOver(); // Check if the game is over
     flippedCards = []; // Clear the flipped cards array
+    checkGameOver(); // Check if the game is over
   } else {
     // If they don't match, flip them back
-    card1.classList.remove('flipped');
-    card2.classList.remove('flipped');
-    flippedCards = []; // Clear the flipped cards array
+    setTimeout(() => {
+      card1.classList.remove('flipped');
+      card2.classList.remove('flipped');
+      flippedCards = []; // Clear the flipped cards array
+    }, 1000);
   }
 }
 
 // Check if the game is finished
 function checkGameOver() {
-  const matchedCards = document.querySelectorAll('.matched');
+  const matchedCards = document.querySelectorAll('.card.matched');
   const totalCards = document.querySelectorAll('.card').length;
 
   if (matchedCards.length === totalCards) {
-    setTimeout(() => {
-      alert("Congratulations! You matched all the cards!");
-      clearInterval(timerInterval); // Stop the timer
-    }, 500); // Delay before showing the game over message
+      stopTimer(); // Stop the timer immediately
+      timerElement.textContent = 'Time: 0:00'; // Reset the display
+      setTimeout(() => {
+        alert('Congratulations! You matched all the cards!');
+      }, 500); // Slight delay to allow the last match to process
+    }
   }
-}
 
 // Fetch JSON data, create cards, and append them to the container
 async function fetchData() {
@@ -177,14 +162,32 @@ async function fetchData() {
     const shuffledDoubledArray = shuffleArray(doubledArray); // Shuffle the doubled array
 
 // Create and append all shuffled cards to the container
+cardContainer.innerHTML = '';
 shuffledDoubledArray.forEach(json => {
   const card = createCard(json);
   cardContainer.appendChild(card);
 });
  } catch (error) {
     console.error("Error fetching or processing data:", error);
+    cardContainer.innerHTML = `<p>Error loading game. Please try again later.</p>`;
   }
 }
 
-// Call the function to start the game
-fetchData();
+// start the game
+function startGame() {
+  stopTimer();
+  startTime = null;
+  flipCount = 0;
+  flippedCards = [];
+  flipCounterElement.textContent = 'Moves: 0';
+  timerElement.textContent = 'Time: 0:00';
+
+  starElementsArray.forEach(star => (star.style.opacity = 1));
+  fetchData();
+}
+
+// Restart button event listeners
+restartButtons.forEach(button => button.addEventListener('click', startGame));
+
+// Start the game on load
+startGame();

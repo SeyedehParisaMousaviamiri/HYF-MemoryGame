@@ -10,6 +10,29 @@
     <div class="card" id="card-container"></div>
     <p id="flipCounter">Moves: 0</p>
     <p id="timer">Time: 0:00</p>
+    
+    <div class="rating">
+        <span class="star">🌟</span>
+        <span class="star">🌟</span>
+        <span class="star">🌟</span>
+        <span class="star">🌟</span>
+        <span class="star">🌟</span>
+      </div>
+
+      <div>
+        <button class="restart">Restart Game</button>
+      </div>
+
+      <div id="modal" class="modal">
+        <div class="modal-content">
+          <h2>Game Over</h2>
+          <p>Time: <span id="totalGameTime"></span></p>
+          <p>Moves: <span id="totalGameMoves"></span></p>
+          <p>Rating: <span id="finalStarRating"></span></p>
+          <button id="playAgainButton">Play Again</button>
+          <button id="closeModalButton">X</button>
+        </div>
+      </div>
     <script src="script.js"></script>
 </body>
 </html>

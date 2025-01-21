@@ -1,3 +1,4 @@
+
 /* Card container styling */
 #card-container {
   display: grid;
@@ -16,14 +17,16 @@
     perspective: 1000px;
     margin: 10px;
     display: flex;
+    cursor: pointer;
   }
   
   /* Inner container for flipping */
-  .inner {
+  .card .inner {
     position: relative;
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
+    transform: rotateY(0deg);
     transition: transform 0.6s;
   }
   
@@ -78,6 +81,7 @@
     padding: 10px;
     border-radius: 5px;
     z-index: 1000;
+    margin: 10px;
   }
   
   #flipCounter{
@@ -86,3 +90,68 @@
   #timer{
     top: 70px;
   }
+
+  /* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.show-modal {
+  display: flex;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button#closeModalButton {
+  background-color: #dc3545;
+}
+
+button#closeModalButton:hover {
+  background-color: #c82333;
+}
+
+/* Restart button */
+.restart {
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: #28a745;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.restart:hover {
+  background-color: #218838;
+}
+
+  
