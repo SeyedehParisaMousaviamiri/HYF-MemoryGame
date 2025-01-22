@@ -15,7 +15,7 @@ let flippedCards=[];
 let flipCount=0;
 const flipCounterElement=document.getElementById('flipCounter');
 
-function countFlips() {
+function incrementFlipCounter() {
   flipCount++;
   flipCounterElement.textContent = `Moves: ${flipCount}`;
 }
@@ -89,7 +89,7 @@ card.addEventListener('click', () => {
   }
   
 // Update flip count 
-countFlips();
+incrementFlipCounter();
 
   //Just 2 cards are flipped
 if (flippedCards.length === 2) {
@@ -99,8 +99,6 @@ if (flippedCards.length === 2) {
   }
  }
 });
-
-
 
 return card;
 }
