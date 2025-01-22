@@ -1,19 +1,6 @@
-// array of cards
-const cards=[
-  { id: 'card1', imgSrc: 'https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/5e5948433f44fd4044f9a30b_kids_english_animals_turtle.png?raw=true', alt:'Happy Turtle' },
-  { id: 'card2', imgSrc: 'https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/d5917a615428834d0e00554dad14b846.png?raw=true',alt:'Happy Elephant' },
-  { id: 'card3', imgSrc: 'https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/819-8194770_clip-art-library-download-animal-illustrations-drawing-transparent.png?raw=true', alt:'Happy Raccoon' },
-  { id: 'card4', imgSrc: 'https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/182-1825580_monkey-png-picture-monkey-safari-animals-clipart-transparent.png?raw=true', alt:'Happy Monkey' },
-  { id: 'card5', imgSrc: 'https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/360_F_879506485_qhYJc7sZOrBSvZC3gdNfZF54SvFfSh4v.jpg?raw=true', alt:'Happy Kitty' },
-  { id: 'card6', imgSrc: 'https://raw.githubusercontent.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/refs/heads/main/vector-blue-dolphin-icon-under-600nw-2277946019.webp', alt:'Happy Dolphin' },
-];
-
 // Select the container
 const cardContainer = document.getElementById('card-container');
-
-//Double the cards
-const doubledArray = [...cards, ...cards];
-
+let cards=[];
 //Shuffle the cards using Fisher-Yates algorithm
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -22,9 +9,6 @@ function shuffleArray(array) {
   }
   return array;
 }
-
-// Generate the shuffled doubled cards
-const shuffledDoubledArray = shuffleArray(doubledArray);
 
 //Flip counting
 let flippedCards=[];
@@ -57,12 +41,12 @@ function updateTimer() {
   timerElement.textContent = `Time: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
 }
 
-
-function createCard(data) {
+// Create card DOM elements
+function createCard(json) {
 // Create the card element
 const card = document.createElement('div');
 card.setAttribute('class', 'card');
-card.setAttribute('id', data.id);
+card.setAttribute('id', json.id);
 
 // Create the inner container for flipping
 const inner = document.createElement('div');
@@ -84,7 +68,7 @@ cardBack.setAttribute('class','card-back');
 
 // Add the image to the back
 const img = document.createElement('img');
-img.src = data.imgSrc;
+img.src = json.imgSrc;
 img.alt = "Card Back Image";
 cardBack.appendChild(img);
 
@@ -127,9 +111,16 @@ function flipAllCardsBack() {
   flippedCards = []; // Clear the flipped cards array
 }
 
+// Fetch JSON data, create cards, and append them to the container
+fetch("https://raw.githubusercontent.com/SeyedehParisaMousaviamiri/SeyedehParisaMousaviamiri.github.io/refs/heads/main/data.json")
+  .then(response => response.json())
+  .then(myJson => {
+    let cards = myJson; // Store the fetched cards
+    const doubledArray = [...cards, ...cards]; // Double the cards
+    const shuffledDoubledArray = shuffleArray(doubledArray); // Shuffle the doubled array
 // Create and append all shuffled cards to the container
-shuffledDoubledArray.forEach(data => {
-  const card = createCard(data);
+shuffledDoubledArray.forEach(json => {
+  const card = createCard(json);
   cardContainer.appendChild(card);
 });
-
+})
