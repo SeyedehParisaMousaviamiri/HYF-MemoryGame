@@ -19,7 +19,27 @@ function shuffleArray(array) {
   }
   return array;
 }
+// Fetch JSON data, create cards, and append them to the container
+async function fetchData() {
+  try {
+   const response = await fetch("https://raw.githubusercontent.com/SeyedehParisaMousaviamiri/SeyedehParisaMousaviamiri.github.io/refs/heads/main/data.json");
+   const data= await response.json();
 
+    let cards = data; // Store the fetched cards
+    const doubledArray = [...cards, ...cards]; // Double the cards
+    const shuffledDoubledArray = shuffleArray(doubledArray); // Shuffle the doubled array
+
+// Create and append all shuffled cards to the container
+cardContainer.innerHTML = '';
+shuffledDoubledArray.forEach(json => {
+  const card = createCard(json);
+  cardContainer.appendChild(card);
+});
+ } catch (error) {
+    console.error("Error fetching or processing data:", error);
+    cardContainer.innerHTML = `<p>Error loading game. Please try again later.</p>`;
+  }
+}
 // Update the star rating based on moves
 function updateStarRating() {
   const totalStars = starElementsArray.length;
@@ -51,7 +71,7 @@ function countFlips() {
 
 //Timer
 function startTimer() {
-  if (!startTime) {
+  if (!startTime && !timerInterval) {
     startTime = Date.now(); // Capture the time when the first card is clicked
     timerInterval = setInterval(updateTimer, 1000); // Update the timer every second
   }
@@ -66,12 +86,11 @@ function updateTimer() {
 
 function stopTimer() {
   if (timerInterval) {
-    clearInterval(timerInterval); // Stops the interval
-    timerInterval = null;         // Resets the interval variable
-    console.log('Timer stopped'); // Debugging output
-  }
+    clearInterval(timerInterval);
+    timerInterval = null;
+  } 
+  startTime = null;
 }
-
 
 // Create card DOM elements
 function createCard(json) {
@@ -121,18 +140,17 @@ function createCard(json) {
 function checkMatch() {
   const [card1, card2] = flippedCards;
 
-  // If the cards match, remove them from the DOM
   if (card1.querySelector('.card-back img').src === card2.querySelector('.card-back img').src) {
     card1.classList.add('matched');
     card2.classList.add('matched');
-    flippedCards = []; // Clear the flipped cards array
-    checkGameOver(); // Check if the game is over
+    console.log('Cards matched:', card1.id, card2.id);
+    flippedCards = [];
+    checkGameOver(); 
   } else {
-    // If they don't match, flip them back
     setTimeout(() => {
       card1.classList.remove('flipped');
       card2.classList.remove('flipped');
-      flippedCards = []; // Clear the flipped cards array
+      flippedCards = [];
     }, 1000);
   }
 }
@@ -140,36 +158,13 @@ function checkMatch() {
 // Check if the game is finished
 function checkGameOver() {
   const matchedCards = document.querySelectorAll('.card.matched');
-  const totalCards = document.querySelectorAll('.card').length;
+  const totalCards = document.querySelectorAll('.card').length-1;
 
   if (matchedCards.length === totalCards) {
-      stopTimer(); // Stop the timer immediately
-      timerElement.textContent = 'Time: 0:00'; // Reset the display
-      setTimeout(() => {
-        alert('Congratulations! You matched all the cards!');
-      }, 500); // Slight delay to allow the last match to process
-    }
-  }
-
-// Fetch JSON data, create cards, and append them to the container
-async function fetchData() {
-  try {
-   const response = await fetch("https://raw.githubusercontent.com/SeyedehParisaMousaviamiri/SeyedehParisaMousaviamiri.github.io/refs/heads/main/data.json");
-   const data= await response.json();
-
-    let cards = data; // Store the fetched cards
-    const doubledArray = [...cards, ...cards]; // Double the cards
-    const shuffledDoubledArray = shuffleArray(doubledArray); // Shuffle the doubled array
-
-// Create and append all shuffled cards to the container
-cardContainer.innerHTML = '';
-shuffledDoubledArray.forEach(json => {
-  const card = createCard(json);
-  cardContainer.appendChild(card);
-});
- } catch (error) {
-    console.error("Error fetching or processing data:", error);
-    cardContainer.innerHTML = `<p>Error loading game. Please try again later.</p>`;
+    stopTimer(); // Stop the timer immediately
+    setTimeout(() => {
+      alert('Congratulations! You matched all the cards!');
+    }, 500);
   }
 }
 
