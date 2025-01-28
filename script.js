@@ -158,7 +158,7 @@ function checkMatch() {
 // Check if the game is finished
 function checkGameOver() {
   const matchedCards = document.querySelectorAll('.card.matched');
-  const totalCards = document.querySelectorAll('.card').length-1;
+  const totalCards = document.querySelectorAll('.card').length;
 
   if (matchedCards.length === totalCards) {
     stopTimer(); // Stop the timer immediately
