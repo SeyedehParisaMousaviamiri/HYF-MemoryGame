@@ -63,7 +63,7 @@ function updateStarRating() {
   });
 }
 
-function incrementFlipCounter() {
+function countFlips() {
   flipCount++;
   flipCounterElement.textContent = `Moves: ${flipCount}`;
   updateStarRating();
@@ -94,7 +94,6 @@ function stopTimer() {
 
 // Create card DOM elements
 function createCard(json) {
-
   const card = document.createElement('div');
   card.className = 'card';
   card.id = json.id;
@@ -159,7 +158,7 @@ function checkMatch() {
 // Check if the game is finished
 function checkGameOver() {
   const matchedCards = document.querySelectorAll('.card.matched');
-  const totalCards = document.querySelectorAll('.card').length-1;
+  const totalCards = document.querySelectorAll('.card').length;
 
   if (matchedCards.length === totalCards) {
     stopTimer(); // Stop the timer immediately
@@ -168,6 +167,7 @@ function checkGameOver() {
     }, 500);
   }
 }
+
 // start the game
 function startGame() {
   stopTimer();
