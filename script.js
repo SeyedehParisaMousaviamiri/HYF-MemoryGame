@@ -63,7 +63,7 @@ function updateStarRating() {
   });
 }
 
-function countFlips() {
+function incrementFlipCounter() {
   flipCount++;
   flipCounterElement.textContent = `Moves: ${flipCount}`;
   updateStarRating();
@@ -94,6 +94,7 @@ function stopTimer() {
 
 // Create card DOM elements
 function createCard(json) {
+
   const card = document.createElement('div');
   card.className = 'card';
   card.id = json.id;
@@ -166,7 +167,6 @@ function checkGameOver() {
       alert('Congratulations! You matched all the cards!');
     }, 500);
   }
-}
 
 // start the game
 function startGame() {
