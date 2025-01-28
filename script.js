@@ -167,7 +167,7 @@ function checkGameOver() {
       alert('Congratulations! You matched all the cards!');
     }, 500);
   }
-
+}
 // start the game
 function startGame() {
   stopTimer();
