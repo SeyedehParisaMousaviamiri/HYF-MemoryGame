@@ -187,18 +187,19 @@ restartButtons.forEach(button => button.addEventListener('click', startGame));
 startGame();
 
 function toggleDropdown() {
+  console.log("Toggling dropdown"); // Debugging
   document.getElementById("dropdownMenu").classList.toggle("show");
 }
 
-// Close dropdown if clicked outside
-window.onclick = function(event) {
-  if (!event.target.matches('button')) {
-      let dropdowns = document.getElementsByClassName("dropdown-content");
-      for (let i = 0; i < dropdowns.length; i++) {
-          let openDropdown = dropdowns[i];
-          if (openDropdown.classList.contains('show')) {
-              openDropdown.classList.remove('show');
-          }
+// Add event listener to the button
+document.getElementById("playButton").addEventListener("click", toggleDropdown);
+
+// Close dropdown if clicking outside
+window.addEventListener("click", function(event) {
+  if (!event.target.matches('#playButton')) {
+      let dropdown = document.getElementById("dropdownMenu");
+      if (dropdown.classList.contains('show')) {
+          dropdown.classList.remove('show');
       }
   }
-}
+});
