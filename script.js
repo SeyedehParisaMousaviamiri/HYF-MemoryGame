@@ -1,6 +1,5 @@
 // Select the container
 const cardContainer = document.getElementById('card-container');
-let cards = [];
 let flippedCards = [];
 let flipCount = 0;
 let startTime = null;
