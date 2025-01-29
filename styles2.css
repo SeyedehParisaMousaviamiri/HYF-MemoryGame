@@ -12,7 +12,7 @@ body {
     max-width: 600px;
     margin: 20px auto;
     padding: 10px;
-    gap: 10px;
+    gap: 5px;
   }
   
   @media (max-width: 768px) {
