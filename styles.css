@@ -27,7 +27,6 @@ html, body {
     align-items: center;
     text-align: center;
     color: var(--text-color);
-    font-smoothing: antialiased;
 }
 
 h1 {
