@@ -185,3 +185,20 @@ restartButtons.forEach(button => button.addEventListener('click', startGame));
 
 // Start the game on load
 startGame();
+
+function toggleDropdown() {
+  document.getElementById("dropdownMenu").classList.toggle("show");
+}
+
+// Close dropdown if clicked outside
+window.onclick = function(event) {
+  if (!event.target.matches('button')) {
+      let dropdowns = document.getElementsByClassName("dropdown-content");
+      for (let i = 0; i < dropdowns.length; i++) {
+          let openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+              openDropdown.classList.remove('show');
+          }
+      }
+  }
+}
