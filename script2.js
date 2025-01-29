@@ -21,7 +21,7 @@ function shuffleArray(array) {
 // Fetch JSON data, create cards, and append them to the container
 async function fetchData() {
   try {
-   const response = await fetch("Pardis.ranjbar@gmail.comhttps://raw.githubusercontent.com/SeyedehParisaMousaviamiri/SeyedehParisaMousaviamiri.github.io/refs/heads/main/data2.json");
+   const response = await fetch("https://raw.githubusercontent.com/SeyedehParisaMousaviamiri/SeyedehParisaMousaviamiri.github.io/refs/heads/main/data2.json");
    const data= await response.json();
 
     let cards = data; // Store the fetched cards
