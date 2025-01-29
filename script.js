@@ -62,7 +62,7 @@ function updateStarRating() {
   });
 }
 
-function incrementFlipCounter() {
+function countFlips() {
   flipCount++;
   flipCounterElement.textContent = `Moves: ${flipCount}`;
   updateStarRating();
@@ -93,7 +93,6 @@ function stopTimer() {
 
 // Create card DOM elements
 function createCard(json) {
-
   const card = document.createElement('div');
   card.className = 'card';
   card.id = json.id;
@@ -104,7 +103,7 @@ function createCard(json) {
   const cardFront = document.createElement('div');
   cardFront.className = 'card-front';
   const frontImg = document.createElement('img');
-  frontImg.src = 'https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/Img/HappyJungle.png?raw=true';
+  frontImg.src = 'https://github.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/blob/main/pngtree-safari-animal-vector-png-image_6882736.png?raw=true';
   frontImg.alt = 'Card Front';
   cardFront.appendChild(frontImg);
 
@@ -167,6 +166,7 @@ function checkGameOver() {
     }, 500);
   }
 }
+
 // start the game
 function startGame() {
   stopTimer();
