@@ -1,6 +1,5 @@
 // Select the container
 const cardContainer = document.getElementById('card-container');
-let cards = [];
 let flippedCards = [];
 let flipCount = 0;
 let startTime = null;
@@ -63,7 +62,7 @@ function updateStarRating() {
   });
 }
 
-function countFlips() {
+function incrementFlipCounter() {
   flipCount++;
   flipCounterElement.textContent = `Moves: ${flipCount}`;
   updateStarRating();
@@ -94,6 +93,7 @@ function stopTimer() {
 
 // Create card DOM elements
 function createCard(json) {
+
   const card = document.createElement('div');
   card.className = 'card';
   card.id = json.id;
@@ -158,7 +158,7 @@ function checkMatch() {
 // Check if the game is finished
 function checkGameOver() {
   const matchedCards = document.querySelectorAll('.card.matched');
-  const totalCards = document.querySelectorAll('.card').length-1;
+  const totalCards = document.querySelectorAll('.card').length;
 
   if (matchedCards.length === totalCards) {
     stopTimer(); // Stop the timer immediately
@@ -167,7 +167,6 @@ function checkGameOver() {
     }, 500);
   }
 }
-
 // start the game
 function startGame() {
   stopTimer();
