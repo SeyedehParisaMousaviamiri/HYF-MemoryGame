@@ -28,7 +28,7 @@ h1 {
     margin-top: -20px;
 }
 
-body button {
+button {
     padding: 10px 20px;
     background-color: #668f6f;
     color: white;
@@ -46,6 +46,7 @@ button:hover {
     position: relative;
     display: inline-block;
 }
+
 .dropdown-content {
     display: none;
     position: absolute;
@@ -54,15 +55,18 @@ button:hover {
     min-width: 150px;
     z-index: 1;
 }
+
 .dropdown-content a {
     display: block;
     padding: 10px;
     text-decoration: none;
     color: black;
 }
+
 .dropdown-content a:hover {
     background-color: #ddd;
 }
+
 .show {
     display: block;
 }
