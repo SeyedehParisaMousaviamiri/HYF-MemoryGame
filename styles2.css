@@ -33,14 +33,14 @@ body {
 @media (max-width: 768px) {
   #card-container {
     grid-template-columns: repeat(2, auto);
-    padding-top: 50px;
+    padding-top: 150px;
   }
 }
 
 @media (max-width: 480px) {
   #card-container {
     grid-template-columns: repeat(2, auto);
-    padding-top: 50px;
+    padding-top: 100px;
   }
 }
 
