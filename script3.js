@@ -46,13 +46,13 @@ function updateStarRating() {
     if (flipCount <= 16) {
       // All stars visible
       star.style.opacity = 1;
-    } else if (flipCount > 16 && flipCount <= 24) {
+    } else if (flipCount > 20 && flipCount <= 28) {
       // 4 stars visible
       star.style.opacity = index < totalStars - 1 ? 1 : 0.1;
-    } else if (flipCount > 24 && flipCount <= 32) {
+    } else if (flipCount > 28 && flipCount <= 36) {
       // 3 stars visible
       star.style.opacity = index < totalStars - 2 ? 1 : 0.1;
-    } else if (flipCount > 32 && flipCount <= 36) {
+    } else if (flipCount > 36 && flipCount <= 44) {
       // 2 stars visible
       star.style.opacity = index < totalStars - 3 ? 1 : 0.1;
     } else {
