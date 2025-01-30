@@ -135,15 +135,6 @@ function createCard(json) {
   return card;
 }
 
-//update best performance
-let bestPerformance = Infinity; 
-
-function checkBestPerformance(flipCount) {
-  if (flipCount < bestPerformance) {
-    bestPerformance = flipCount; 
-    document.getElementById('bestPerformance').textContent = bestPerformance;
-  }
-}
 // Check if the flipped cards match
 function checkMatch() {
   const [card1, card2] = flippedCards;
@@ -169,7 +160,6 @@ function checkGameOver() {
 
   if (matchedCards.length === totalCards) {
     stopTimer(); // Stop the timer immediately
-    checkBestPerformance(flipCount);
     setTimeout(() => {
       alert('Congratulations! You matched all the cards!');
     }, 500);
