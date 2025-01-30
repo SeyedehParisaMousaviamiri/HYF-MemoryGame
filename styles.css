@@ -1,0 +1,107 @@
+:root {
+    --primary-color: #668f6f;
+    --secondary-color: #557a57;
+    --text-color: #2e4232;
+    --background-color: #f5f5f5;
+    --white: #ffffff;
+    --font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: var(--font-family);
+    background-image: url(https://raw.githubusercontent.com/SeyedehParisaMousaviamiri/HYF-MemoryGame/refs/heads/main/Img/d680c34a-ca05-4c49-9b9e-8ed821dd8d90.webp);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--text-color);
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    margin-top: -20px;
+    letter-spacing: 1px;
+}
+
+button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-family: var(--font-family);
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--primary-color);
+    color: var(--white);
+    min-width: 150px;
+    z-index: 1;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: var(--white);
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+    }
+}

@@ -21,7 +21,7 @@ function shuffleArray(array) {
 // Fetch JSON data, create cards, and append them to the container
 async function fetchData() {
   try {
-   const response = await fetch("https://raw.githubusercontent.com/SeyedehParisaMousaviamiri/SeyedehParisaMousaviamiri.github.io/refs/heads/main/data.json");
+   const response = await fetch("https://raw.githubusercontent.com/SeyedehParisaMousaviamiri/SeyedehParisaMousaviamiri.github.io/refs/heads/main/data2.json");
    const data= await response.json();
 
     let cards = data; // Store the fetched cards
@@ -46,13 +46,13 @@ function updateStarRating() {
     if (flipCount <= 16) {
       // All stars visible
       star.style.opacity = 1;
-    } else if (flipCount > 12 && flipCount <= 20) {
+    } else if (flipCount > 16 && flipCount <= 24) {
       // 4 stars visible
       star.style.opacity = index < totalStars - 1 ? 1 : 0.1;
-    } else if (flipCount > 20 && flipCount <= 28) {
+    } else if (flipCount > 24 && flipCount <= 32) {
       // 3 stars visible
       star.style.opacity = index < totalStars - 2 ? 1 : 0.1;
-    } else if (flipCount > 28 && flipCount <= 32) {
+    } else if (flipCount > 32 && flipCount <= 36) {
       // 2 stars visible
       star.style.opacity = index < totalStars - 3 ? 1 : 0.1;
     } else {
@@ -142,6 +142,7 @@ function checkMatch() {
   if (card1.querySelector('.card-back img').src === card2.querySelector('.card-back img').src) {
     card1.classList.add('matched');
     card2.classList.add('matched');
+    console.log('Cards matched:', card1.id, card2.id);
     flippedCards = [];
     checkGameOver(); 
   } else {
@@ -161,7 +162,7 @@ function checkGameOver() {
   if (matchedCards.length === totalCards) {
     stopTimer(); // Stop the timer immediately
     setTimeout(() => {
-      endGame();
+    endGame();
     }, 500);
   }
 }
@@ -198,6 +199,7 @@ function closeModal() {
     startGame(); // Restart the game when closing the modal
   });
 }
+
 
 // start the game
 function startGame() {
