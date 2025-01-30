@@ -161,9 +161,42 @@ function checkGameOver() {
   if (matchedCards.length === totalCards) {
     stopTimer(); // Stop the timer immediately
     setTimeout(() => {
-      alert('Congratulations! You matched all the cards!');
+      endGame();
     }, 500);
   }
+}
+
+//Modal show
+const modalElement = document.getElementById("gameModal");
+const totalGameTimeElement = document.getElementById("totalGameTime");
+const totalGameMovesElement = document.getElementById("totalGameMoves");
+const finalStarRatingElement = document.getElementById("finalStarRating");
+
+function endGame() {
+  clearInterval(timerInterval); // Ensure the timer stops
+  totalGameTime = timerElement.textContent; // Get the time
+  starRating = document.querySelector('.rating').innerHTML; // Get star rating
+  const totalGameMoves = flipCount; // Get total moves
+
+  // Show modal on game end
+  modalElement.classList.add("show-modal");
+
+  // Show game stats in the modal
+  totalGameTimeElement.innerHTML = `Time: ${totalGameTime}`;
+  totalGameMovesElement.innerHTML = `Moves: ${totalGameMoves}`;
+  finalStarRatingElement.innerHTML = `Rating: ${starRating}`;
+
+  // Reset matched cards array
+  matchedCards = [];
+
+  closeModal();
+}
+
+function closeModal() {
+  document.getElementById('closeModalBtn').addEventListener('click', () => {
+    modalElement.classList.remove("show-modal");
+    startGame(); // Restart the game when closing the modal
+  });
 }
 
 // start the game
