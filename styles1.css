@@ -29,13 +29,15 @@ body {
 
 @media (max-width: 768px) {
   #card-container {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(2, auto);
+    padding-top: 100px;
   }
 }
 
 @media (max-width: 480px) {
   #card-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, auto);
+    padding-top: 50px;
   }
 }
 
