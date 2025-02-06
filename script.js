@@ -22,28 +22,30 @@ function shuffleArray(array) {
 async function fetchData() {
   try {
    const response = await fetch("https://raw.githubusercontent.com/SeyedehParisaMousaviamiri/SeyedehParisaMousaviamiri.github.io/refs/heads/main/data.json");
-   const data= await response.json();
+   let cards= await response.json();
 
-    let cards = data; // Store the fetched cards
     const doubledArray = [...cards, ...cards]; // Double the cards
     const shuffledDoubledArray = shuffleArray(doubledArray); // Shuffle the doubled array
 
 // Create and append all shuffled cards to the container
 cardContainer.innerHTML = '';
+
 shuffledDoubledArray.forEach(json => {
   const card = createCard(json);
   cardContainer.appendChild(card);
 });
+
  } catch (error) {
     console.error("Error fetching or processing data:", error);
     cardContainer.innerHTML = `<p>Error loading game. Please try again later.</p>`;
   }
 }
+
 // Update the star rating based on moves
 function updateStarRating() {
   const totalStars = starElementsArray.length;
   starElementsArray.forEach((star, index) => {
-    if (flipCount <= 16) {
+    if (flipCount <= 12) {
       // All stars visible
       star.style.opacity = 1;
     } else if (flipCount > 12 && flipCount <= 20) {

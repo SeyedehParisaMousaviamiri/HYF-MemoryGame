@@ -43,7 +43,7 @@ shuffledDoubledArray.forEach(json => {
 function updateStarRating() {
   const totalStars = starElementsArray.length;
   starElementsArray.forEach((star, index) => {
-    if (flipCount <= 16) {
+    if (flipCount <= 20) {
       // All stars visible
       star.style.opacity = 1;
     } else if (flipCount > 20 && flipCount <= 28) {
