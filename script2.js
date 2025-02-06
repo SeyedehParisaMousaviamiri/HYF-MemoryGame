@@ -43,16 +43,16 @@ shuffledDoubledArray.forEach(json => {
 function updateStarRating() {
   const totalStars = starElementsArray.length;
   starElementsArray.forEach((star, index) => {
-    if (flipCount <= 16) {
+    if (flipCount <= 28) {
       // All stars visible
       star.style.opacity = 1;
-    } else if (flipCount > 16 && flipCount <= 24) {
+    } else if (flipCount > 28 && flipCount <= 32) {
       // 4 stars visible
       star.style.opacity = index < totalStars - 1 ? 1 : 0.1;
-    } else if (flipCount > 24 && flipCount <= 32) {
+    } else if (flipCount > 32 && flipCount <= 40) {
       // 3 stars visible
       star.style.opacity = index < totalStars - 2 ? 1 : 0.1;
-    } else if (flipCount > 32 && flipCount <= 36) {
+    } else if (flipCount > 40 && flipCount <= 48) {
       // 2 stars visible
       star.style.opacity = index < totalStars - 3 ? 1 : 0.1;
     } else {
