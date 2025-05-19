@@ -3,7 +3,7 @@
 A classic “match-pairs” memory card game built with **HTML**, **CSS**, and **JavaScript** as part of the HackYourFuture curriculum.
 
 ## How to Play
-1. Open `[index.html](https://memorygamebyparisaaa.netlify.app/)`.
+1. Open [the live demo](https://memorygamebyparisaaa.netlify.app/). 
 2. Click on any two cards to reveal them.
 3. If the cards match, they stay flipped; otherwise they flip back.
 4. Continue until all pairs are matched!
